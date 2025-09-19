@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Doctor Consultation</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f8fafd;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 80px;
+        }
+        .navbar {
+            display: flex;
+            align-items: ;
+            background: #0097a7;
+            padding: 20px 0;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-left: 40px;
+            margin-right: auto;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo .icon {
+            font-size: 2.2rem;
+            margin-right: 10px;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 30px;
+            margin: 0 auto;
+        }
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .navbar .nav-links a:hover {
+            color: #ffd600;
+        }
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,151,167,0.22);
+            padding: 36px 32px 28px 32px;
+            min-width: 340px;
+            max-width: 95vw;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .modal h2 {
+            margin-top: 0;
+            color: #0097a7;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-form label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .modal-form input, .modal-form select, .modal-form textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #b2ebf2;
+            font-size: 1rem;
+        }
+        .modal-form button {
+            background: linear-gradient(90deg, #0097a7 60%, #00bcd4 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .modal-form button:hover {
+            background: #00796b;
+        }
+        .modal-confirm {
+            text-align: center;
+            color: #0097a7;
+            font-size: 1.2rem;
+            margin-top: 18px;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 18px;
+            color: #0097a7;
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="icon">🩺</span>
+            Doctor Appointment
+        </div>
+        <div class="nav-links">
+            <a href="./Team Error/index.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Help</a>
+        </div>
+    </nav>
+    <div class="modal">
+        <a href="./Team Error/index.html" class="back-link">&larr; Back to Home</a>
+        <h2>Online Doctor Consultation</h2>
+        <form class="modal-form" id="consultForm" autocomplete="off">
+            <label for="cname">Name:</label>
+            <input type="text" id="cname" name="cname" required placeholder="Your Name">
+            <label for="cage">Age:</label>
+            <input type="number" id="cage" name="cage" min="0" max="120" required placeholder="Your Age">
+            <label for="cgender">Gender:</label>
+            <select id="cgender" name="cgender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="csymptoms">Symptoms:</label>
+            <textarea id="csymptoms" name="csymptoms" rows="2" required placeholder="Describe your symptoms..."></textarea>
+            <label for="cdoctor">Preferred Doctor/Specialty:</label>
+            <input type="text" id="cdoctor" name="cdoctor" required placeholder="Doctor or Specialty">
+            <button type="submit">Submit Consultation</button>
+            <div class="modal-confirm" id="consultModalConfirm" style="display:none;"></div>
+        </form>
+    </div>
+    <script>
+        const consultForm = document.getElementById('consultForm');
+        const consultModalConfirm = document.getElementById('consultModalConfirm');
+        consultForm.onsubmit = function(e) {
+            e.preventDefault();
+            consultForm.style.display = 'none';
+            consultModalConfirm.innerHTML = "Consultation request submitted!<br>Doctor will contact you soon.";
+            consultModalConfirm.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = "./Team Error/index.html";
+            }, 1800);
+        };
+    </script>
+</body>
+</html>
