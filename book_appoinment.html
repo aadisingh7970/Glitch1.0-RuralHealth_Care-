@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f8fafd;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,151,167,0.22);
+            padding: 36px 32px 28px 32px;
+            min-width: 340px;
+            max-width: 95vw;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .modal h2 {
+            margin-top: 0;
+            color: #0097a7;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-form label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .modal-form input, .modal-form select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #b2ebf2;
+            font-size: 1rem;
+        }
+        .modal-form button {
+            background: linear-gradient(90deg, #0097a7 60%, #00bcd4 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .modal-form button:hover {
+            background: #00796b;
+        }
+        .modal-confirm {
+            text-align: center;
+            color: #0097a7;
+            font-size: 1.2rem;
+            margin-top: 18px;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 18px;
+            color: #0097a7;
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal">
+        <a href="./Team Error/index.html" class="back-link">&larr; Back to Home</a>
+        <h2>Book Appointment</h2>
+        <form class="modal-form" id="appointmentForm" autocomplete="off">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="0" max="120" required placeholder="Your Age">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <label for="doctor">Doctor/Specialty:</label>
+            <input type="text" id="doctor" name="doctor" required placeholder="Doctor or Specialty">
+            <button type="submit">Submit Appointment</button>
+            <div class="modal-confirm" id="modalConfirm" style="display:none;"></div>
+        </form>
+    </div>
+    <script>
+        const appointmentForm = document.getElementById('appointmentForm');
+        const modalConfirm = document.getElementById('modalConfirm');
+        appointmentForm.onsubmit = function(e) {
+            e.preventDefault();
+            appointmentForm.style.display = 'none';
+            modalConfirm.innerHTML = "Appointment booked successfully!<br>Thank you.";
+            modalConfirm.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = "./Team Error/index.html";
+            }, 1800);
+        };
+    </script>
+</body>
+</html>
