@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor’s Appointment Prep Tool</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f8fafd;
+            margin: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0097a7;
+            padding: 20px 0;
+        }
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-right: 40px;
+            letter-spacing: 2px;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .navbar .nav-links a:hover {
+            color: #ffd600;
+        }
+        .main-actions {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0 30px 0;
+        }
+        .action-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0,151,167,0.08);
+            width: 220px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+            position: relative;
+        }
+        .action-container:hover {
+            box-shadow: 0 8px 24px rgba(0,151,167,0.18);
+        }
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 18px;
+            color: #0097a7;
+        }
+        .action-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+        .prep-form {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,151,167,0.08);
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .prep-form label {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .prep-form input, .prep-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #b2ebf2;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .prep-form button {
+            background: #0097a7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .prep-form button:hover {
+            background: #00796b;
+        }
+        .summary-container {
+            background: #e0f7fa;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 24px;
+            font-size: 1.1rem;
+        }
+        .action-container.active {
+            border: 2px solid #0097a7;
+            box-shadow: 0 8px 32px rgba(0,151,167,0.22);
+            background: linear-gradient(135deg, #e0f7fa 60%, #fff 100%);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Doctor Appointment</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Help</a>
+        </div>
+    </nav>
+    <div class="main-actions">
+        <a href="../bookappoinment.html" style="text-decoration:none;">
+            <div class="action-container" id="bookAppointmentBtn">
+                <div class="action-icon">🩺</div>
+                <div class="action-title">Book Appointment</div>
+            </div>
+        </a>
+        <a href="../consultnw.html" style="text-decoration:none;">
+            <div class="action-container" id="doctorConsultBtn">
+                <div class="action-icon">👨‍⚕️</div>
+                <div class="action-title">Online Doctor Consultation</div>
+            </div>
+        </a>
+        <div class="action-container" onclick="alert('Book Lab Test clicked!')">
+            <div class="action-icon">🧪</div>
+            <div class="action-title">Book Lab Test</div>
+        </div>
+    </div>
+    <form class="prep-form" id="prepForm">
+        <h2>Appointment Prep</h2>
+        <label for="symptoms">Symptoms:</label>
+        <textarea id="symptoms" name="symptoms" rows="2" placeholder="Describe your symptoms..."></textarea>
+        <label for="meds">Medications:</label>
+        <input type="text" id="meds" name="meds" placeholder="List your medications...">
+        <label for="questions">Questions for Doctor:</label>
+        <textarea id="questions" name="questions" rows="2" placeholder="Any questions for your doctor?"></textarea>
+        <button type="button" onclick="generateSummary()">Generate Summary</button>
+    </form>
+    <div id="summary" class="summary-container" style="display:none;"></div>
+    <script>
+        function generateSummary() {
+            const symptoms = document.getElementById('symptoms').value.trim();
+            const meds = document.getElementById('meds').value.trim();
+            const questions = document.getElementById('questions').value.trim();
+            let summaryHtml = `<h3>Appointment Summary</h3>`;
+            summaryHtml += `<strong>Symptoms:</strong> <br>${symptoms || '<em>None provided</em>'}<br><br>`;
+            summaryHtml += `<strong>Medications:</strong> <br>${meds || '<em>None provided</em>'}<br><br>`;
+            summaryHtml += `<strong>Questions for Doctor:</strong> <br>${questions || '<em>None provided</em>'}`;
+            const summaryDiv = document.getElementById('summary');
+            summaryDiv.innerHTML = summaryHtml;
+            summaryDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
